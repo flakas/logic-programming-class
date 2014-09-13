@@ -1,4 +1,4 @@
-logic-programming-class
+Logic programming class
 =======================
 
-Logic Programming class
+These are sources for Logic Programming Class at Vilnius University, 2014
