@@ -1,4 +1,24 @@
-% Faktai ============================================================
+% 1 užduotis
+
+% Predikatai:
+% 11) senele(X, Y);
+% 19) is_vienos_šeimos(X, Y, Z);
+% 36) trys_draugai(X,Y,Z)  : "panašaus amžiaus ir turi tą patį pomegį";
+% 37) klaida_duomenyse(A) : "asmuo A turi jaunesnį vieną iš tevų";
+
+% Užklausų pavyzdžiai
+% senelė(gabija, Vaikas).  =>  daina ; danas ; danė ; doma ; demetra .
+% senelė(Senelė, bernarda).  =>  eglė ; elona .
+% iš_vienos_šeimos(danė, danas, banga).  =>  true.
+% iš_vienos_šeimos(eglė, ela, demetra).  =>  false.
+% is_vienos_šeimos(Asmuo1, Asmuo2, abramas).  =>  barbora ; balys .
+% trys_draugai(doma, darius, dmitrijus).  =>  false.
+% trys_draugai(Asmuo1, Asmuo2, Asmuo3).  =>  daina ; darius ; dovis .
+% klaida_duomenyse(Asmuo).  =>  false .
+% Pakeitus `doma` amžių į 1:
+% klaida_duomenyse(Asmuo).  =>  bernarda ; benas .
+
+% Faktai ======================================================================
 % Sumos
 s(1, 1, 2). s(2, 1, 3). s(3, 1, 4). s(4, 1, 5). s(5, 1, 6).
 s(6, 1, 7). s(7, 1, 8). s(8, 1, 9). s(9, 1, 10). s(10, 1, 11).
@@ -12,16 +32,97 @@ s(41, 1, 42). s(42, 1, 43). s(43, 1, 44). s(44, 1, 45). s(45, 1, 46).
 s(46, 1, 47). s(47, 1, 48). s(48, 1, 49). s(49, 1, 50). s(50, 1, 51).
 s(51, 1, 52). s(52, 1, 53). s(53, 1, 54). s(54, 1, 55). s(55, 1, 56).
 s(56, 1, 57). s(57, 1, 58). s(58, 1, 59). s(59, 1, 60). s(60, 1, 61).
+s(61, 1, 62). s(62, 1, 63). s(63, 1, 64). s(64, 1, 65). s(65, 1, 66).
+s(66, 1, 67). s(67, 1, 68). s(68, 1, 69). s(69, 1, 70). s(70, 1, 71).
+s(71, 1, 72). s(72, 1, 73). s(73, 1, 74). s(74, 1, 75). s(75, 1, 76).
+s(76, 1, 77). s(77, 1, 78). s(78, 1, 79). s(80, 1, 81). s(81, 1, 82).
+s(82, 1, 83). s(83, 1, 84). s(84, 1, 85). s(85, 1, 86). s(86, 1, 87).
 
 % Genealogijos medis
-asmuo(jonas, vyras, 10, krepšinis).
-asmuo(ona, moteris, 21, tinklinis).
-asmuo(petras, vyras, 21, tinklinis).
-asmuo(dina, moteris, 22, tinklinis).
-asmuo(bronė, moteris, 30, tinklinis).
-mama(ona, jonas).
-mama(bronė, ona).
-pora(petras, ona).
+% 1
+asmuo(gabija, moteris, 81, tinklinis).
+asmuo(gabrielis, vyras, 80, krepšinis).
+asmuo(geta, moteris, 80, skvošas).
+asmuo(gintas, vyras, 80, krepšinis).
+asmuo(guoda, moteris, 83, krepšinis).
+% 2
+asmuo(edita, moteris, 63, tinklinis).
+asmuo(eglė, moteris, 60, badmintonas).
+asmuo(edgaras, vyras, 61, tinklinis).
+asmuo(ela, moteris, 59, skvošas).
+asmuo(eimis, vyras, 59, krepšinis).
+asmuo(elona, moteris, 60, skvošas).
+asmuo(erikas, vyras, 62, badmintonas).
+asmuo(eva, moteris, 63, tinklinis).
+asmuo(ernestas, vyras, 64, krepšinis).
+% 3
+asmuo(daina, moteris, 40, tenisas).
+asmuo(daivis, vyras, 41, badmintonas).
+asmuo(danė, moteris, 42, krepšinis).
+asmuo(danas, vyras, 42, krepšinis).
+asmuo(doma, moteris, 1, krepšinis).
+asmuo(darius, vyras, 39, tenisas).
+asmuo(demetra, moteris, 41, futbolas).
+asmuo(dmitrijus, vyras, 40, tinklinis).
+asmuo(dita, moteris, 45, skvošas).
+asmuo(dovis, vyras, 40, tenisas).
+% 4
+asmuo(banga, moteris, 11, krepšinis).
+asmuo(barbora, moteris, 20, futbolas).
+asmuo(balys, vyras, 20, badmintonas).
+asmuo(bernarda, moteris, 21, tinklinis).
+asmuo(bartas, vyras, 22, skvošas).
+asmuo(benas, vyras, 23, tenisas).
+% 5
+asmuo(abramas, vyras, 5, krepšinis).
+asmuo(ada, moteris, 7, tinklinis).
+asmuo(adrija, moteris, 3, badmintonas).
+
+% mamos
+% 1
+mama(gabija, edita).
+mama(gabija, edgaras).
+mama(gabija, ela).
+mama(geta, eimis).
+mama(geta, elona).
+mama(geta, eva).
+% 2
+mama(eglė, danė).
+mama(eglė, doma).
+mama(eglė, demetra).
+mama(ela, daina).
+mama(ela, danas).
+mama(elona, darius).
+mama(elona, dmitrijus).
+mama(eva, dovis).
+% 3
+mama(daina, barbora).
+mama(danė, banga).
+mama(doma, bernarda).
+mama(doma, benas).
+% 4
+mama(barbora, abramas).
+mama(balys, ada).
+mama(bernarda, adrija).
+
+% poros
+% 1
+pora(gabrielis, gabija).
+pora(gintas, geta).
+% 2
+pora(edgaras, eglė).
+pora(eimis, ela).
+pora(erikas, elona).
+pora(ernestas, eva).
+% 3
+pora(daivis, daina).
+pora(danas, danė).
+pora(darius, doma).
+pora(dmitrijus, demetra).
+pora(dovis, dita).
+% 4
+pora(balys, barbora).
+pora(bartas, bernarda).
 
 % Predikatai ========================================================
 % Aritmetika
@@ -32,26 +133,35 @@ atimti(X, Y, Z) :- s(Z, Y, X).
 senelė(Senelė, Anūkas) :-
     mama(Senelė, Mama),
     mama(Mama, Anūkas).
+% Asmuo yra anūko senelė, jei anūko tėvo mama yra tas asmuo
+senelė(Senelė, Anūkas) :-
+    mama(Senelė, Tėvas),
+    tėvas(Tėvas, Anūkas).
 
 % Asmuo yra vaiko tėvas, jei vaiko mama yra poroje su tuo asmeniu
 tėvas(Tėvas, Vaikas) :-
     mama(Mama, Vaikas),
     pora(Tėvas, Mama).
 
+% Trys asmenys yra vienoje šeimoje, jei kiekvienas asmuo yra bendroje šeimoje su kiekvienu kitu asmeniu
+iš_vienos_šeimos(Asmuo1, Asmuo2, Asmuo3) :-
+    bendra_šeima(Asmuo1, Asmuo2),
+    bendra_šeima(Asmuo2, Asmuo3),
+    bendra_šeima(Asmuo1, Asmuo3).
 % Mama ir vaikas yra bendroje šeimoje
-iš_vienos_šeimos(Mama, Vaikas) :- mama(Mama, Vaikas).
-iš_vienos_šeimos(Vaikas, Mama) :- mama(Mama, Vaikas).
+bendra_šeima(Mama, Vaikas) :- mama(Mama, Vaikas).
+bendra_šeima(Vaikas, Mama) :- mama(Mama, Vaikas).
 % Tėvas ir vaikas yra bendroje šeimoje
-iš_vienos_šeimos(Tėvas, Vaikas) :- tėvas(Tėvas, Vaikas).
-iš_vienos_šeimos(Vaikas, Tėvas) :- tėvas(Tėvas, Vaikas).
+bendra_šeima(Tėvas, Vaikas) :- tėvas(Tėvas, Vaikas).
+bendra_šeima(Vaikas, Tėvas) :- tėvas(Tėvas, Vaikas).
 % Du asmenys, turintys tą pačią mamą, yra iš vienos šeimos, bet ne tas pats asmuo
-iš_vienos_šeimos(Vaikas1, Vaikas2) :-
+bendra_šeima(Vaikas1, Vaikas2) :-
     mama(Mama, Vaikas1),
     mama(Mama, Vaikas2),
     not(sutampa(Vaikas1, Vaikas2)).
 % Jei du asmenys yra poroje - jie yra vienoje šeimoje
-iš_vienos_šeimos(Vyras, Žmona) :- pora(Vyras, Žmona).
-iš_vienos_šeimos(Žmona, Vyras) :- pora(Žmona, Vyras).
+bendra_šeima(Vyras, Žmona) :- pora(Vyras, Žmona).
+bendra_šeima(Žmona, Vyras) :- pora(Vyras, Žmona).
 
 % Draugai, jei sutampa pomėgiai ir jų amžius panašus
 trys_draugai(Draugas1, Draugas2, Draugas3) :-
