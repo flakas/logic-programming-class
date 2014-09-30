@@ -1,13 +1,15 @@
 % 1 užduotis
 
-% Predikatai:
+% Genealoginis medis nupieštas ant popieriaus lapo, bus pateiktas paskaitoje
+
+% Užduoties predikatai:
 % 11) senele(X, Y);
 % 19) is_vienos_šeimos(X, Y, Z);
 % 36) trys_draugai(X,Y,Z)  : "panašaus amžiaus ir turi tą patį pomegį";
 % 37) klaida_duomenyse(A) : "asmuo A turi jaunesnį vieną iš tevų";
 
-% Užklausų pavyzdžiai
-% senelė(gabija, Vaikas).  =>  daina ; danas ; danė ; doma ; demetra .
+% Užklausų pavyzdžiai:
+% senelė(gabija, Anūkas).  =>  daina ; danas ; danė ; doma ; demetra .
 % senelė(Senelė, bernarda).  =>  eglė ; elona .
 % iš_vienos_šeimos(danė, danas, banga).  =>  true.
 % iš_vienos_šeimos(eglė, ela, demetra).  =>  false.
@@ -38,10 +40,10 @@ s(71, 1, 72). s(72, 1, 73). s(73, 1, 74). s(74, 1, 75). s(75, 1, 76).
 s(76, 1, 77). s(77, 1, 78). s(78, 1, 79). s(80, 1, 81). s(81, 1, 82).
 s(82, 1, 83). s(83, 1, 84). s(84, 1, 85). s(85, 1, 86). s(86, 1, 87).
 
-% Genealogijos medis
+% Genealogijos medis ==========================================================
 % 1
 asmuo(gabija, moteris, 81, tinklinis).
-asmuo(gabrielis, vyras, 80, krepšinis).
+asmuo(gabrielis, vyras, 8, krepšinis).
 asmuo(geta, moteris, 80, skvošas).
 asmuo(gintas, vyras, 80, krepšinis).
 asmuo(guoda, moteris, 83, krepšinis).
@@ -60,7 +62,7 @@ asmuo(daina, moteris, 40, tenisas).
 asmuo(daivis, vyras, 41, badmintonas).
 asmuo(danė, moteris, 42, krepšinis).
 asmuo(danas, vyras, 42, krepšinis).
-asmuo(doma, moteris, 1, krepšinis).
+asmuo(doma, moteris, 39, krepšinis).
 asmuo(darius, vyras, 39, tenisas).
 asmuo(demetra, moteris, 41, futbolas).
 asmuo(dmitrijus, vyras, 40, tinklinis).
@@ -124,10 +126,14 @@ pora(dovis, dita).
 pora(balys, barbora).
 pora(bartas, bernarda).
 
-% Predikatai ========================================================
+% Predikatai ==================================================================
 % Aritmetika
 sudėti(X, Y, Z) :- s(X, Y, Z).
 atimti(X, Y, Z) :- s(Z, Y, X).
+
+% Jei abejų parametrų reikšmėms galima priskirti tą patį vardą - parametrų reikšmės sutampa
+% Parametrų reikšmėms priskirti tą patį vardą bus galima tik jei tos reikšmės yra vienodos
+sutampa(X, X).
 
 % Asmuo yra anūko senelė, jei anūko mamos mama yra tas asmuo
 senelė(Senelė, Anūkas) :-
@@ -148,13 +154,14 @@ iš_vienos_šeimos(Asmuo1, Asmuo2, Asmuo3) :-
     bendra_šeima(Asmuo1, Asmuo2),
     bendra_šeima(Asmuo2, Asmuo3),
     bendra_šeima(Asmuo1, Asmuo3).
+
 % Mama ir vaikas yra bendroje šeimoje
 bendra_šeima(Mama, Vaikas) :- mama(Mama, Vaikas).
 bendra_šeima(Vaikas, Mama) :- mama(Mama, Vaikas).
 % Tėvas ir vaikas yra bendroje šeimoje
 bendra_šeima(Tėvas, Vaikas) :- tėvas(Tėvas, Vaikas).
 bendra_šeima(Vaikas, Tėvas) :- tėvas(Tėvas, Vaikas).
-% Du asmenys, turintys tą pačią mamą, yra iš vienos šeimos, bet ne tas pats asmuo
+% Du asmenys, turintys tą pačią mamą, yra iš vienos šeimos, bet tik jei tai ne tas pats asmuo
 bendra_šeima(Vaikas1, Vaikas2) :-
     mama(Mama, Vaikas1),
     mama(Mama, Vaikas2),
@@ -174,10 +181,6 @@ trys_draugai(Draugas1, Draugas2, Draugas3) :-
     sutampa_pomėgiai(Pomėgis1, Pomėgis2, Pomėgis3),
     panašaus_amžiaus(Amžius1, Amžius2, Amžius3).
 
-% Jei abejų parametrų reikšmėms galima priskirti tą patį vardą - parametrų reikšmės sutampa
-% Parametrų reikšmėms priskirti tą patį vardą bus galima tik jei tos reikšmės yra vienodos
-sutampa(X, X).
-
 % Jei sutampa pirmi du ir paskutiniai du, tai visi trys yra lygūs
 sutampa_pomėgiai(Pomėgis1, Pomėgis2, Pomėgis3) :-
     sutampa(Pomėgis1, Pomėgis2),
@@ -189,6 +192,7 @@ panašaus_amžiaus(Amžius1, Amžius2, Amžius3) :-
     beveik_sutampa(Amžius1, Amžius3),
     beveik_sutampa(Amžius2, Amžius3).
 
+% Beveik sutampa - jei amžiaus skirtumas tarp 2 asmenų yra ne didesnis nei 1 metai
 % Amžius1 = Amžius2
 beveik_sutampa(Amžius1, Amžius2) :-
     sutampa(Amžius1, Amžius2).
